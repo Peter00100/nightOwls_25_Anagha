@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SortLister-User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+        * {
+            font-family: Comic Sans MS;
+        }
+
+        #background-pic {
+            width: 85vw;
+            height: 80vh;
+            position: absolute;
+            z-index: -1;
+        }
+
+        #logo:hover {
+            transform: rotateY(200deg) scale(1.5);
+            transition: all 1s ease;
+        }
+
+        .heading {
+            font-size: 60px;
+        }
+
+        .heading:hover {
+            transform: scale(1.2);
+            transition: all 0.5s ease;
+        }
+
+        .main-box {
+            height: 60vh;
+            color: rgb(240, 240, 240);
+            font-size: 20px;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<header>
+    <nav class="navbar text-white bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./dragon.png" alt="Dragon" width="100" height="100" id="logo" />
+            </a>
+            <h1 class="text-white heading">Resume SortLister</h1>
+        </div>
+    </nav>
+</header>
+
+<body class="bg-dark">
+    <main>
+        <div class="container">
+            <img src="image.jpeg" alt="image" srcset="" id="background-pic" />
+        </div>
+
+        <div class="container d-flex justify-content-center align-items-center flex-column main-box">
+            <form method="POST">
+                
+                {% csrf_token %}
+                <p class="text-white">Upload your resume (PDF) and get shortlisted.</p>
+                <form id="resumeForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="resumeInput" class="text-white">Choose a PDF file:</label>
+                        <input type="file" class="form-control my-2" id="resumeInput" accept=".pdf">
+                    </div>
+                    <button type="button" class="btn btn-success my-2 " name="submit" onclick="processResume()">Shortlist</button>
+                    <h3 class="my-5 processed text-white">Successfully Sortlisted</h3>
+            </form>
+        </div>
+
+    </main>
+
+    <script>
+        function processResume() {
+            var fileInput = document.getElementById('resumeInput');
+            var file = fileInput.files[0];
+
+            if (!(file)) {
+                // You can perform additional processing or send the file to a server for more advanced handling.
+                alert('Please select a valid PDF file.');
+
+            }
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
